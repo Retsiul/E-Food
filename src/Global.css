@@ -1,0 +1,21 @@
+:root {
+
+    --featuredColor: #E66767;
+    --secondColor: #FFEBD9;
+    --background: #FFF8F2;
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: "Roboto", sans-serif;
+
+
+}
+
+body {
+    background-color: var(--background);
+    color: var(--featuredColor);
+
+}
