@@ -35,7 +35,7 @@ const PayFood = ({ open, setOpen }: PayFoodProps) => {
               </p>
               <span> Serve: de 2 a 3 pessoas!</span>
 
-              <ButtonPay>Adicionar ao carrinho</ButtonPay>
+              <ButtonPay>Adicionar ao carrinho - R$ 60,90</ButtonPay>
             </InfoCard>
 
             <img
