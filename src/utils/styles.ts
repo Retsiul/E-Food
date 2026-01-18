@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import logoEfood from '../assets/logo.svg'
-import { Card } from "../components/FeatureFood/styles";
+import { Card } from "../components/HomeFeaturedFood/styles";
 import { variables } from "./variables";
 
 

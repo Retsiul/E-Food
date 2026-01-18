@@ -1,4 +1,4 @@
-import ListFood from "../../components/ListFood";
+import ListFood from "../../components/ListFoodForType";
 
 const List = () => {
   return (

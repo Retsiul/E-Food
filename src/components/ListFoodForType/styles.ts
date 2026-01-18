@@ -52,7 +52,9 @@ margin-top:8px;
 
 }
 
-button{
+`
+
+export const ButtonPay=styled.button`
 padding:4px 0;
 border:none;
 color:auto;
@@ -62,5 +64,4 @@ width:100%;
 display:inline-block;
 color:${variables.featuredColor};
 background:${variables.secondColor};
-}
-`
+cursor:pointer;`

@@ -1,4 +1,4 @@
-import { FeaturedFood } from "../../components/FeatureFood";
+import { FeaturedFood } from "../../components/HomeFeaturedFood";
 
 const Home = () => {
   return (
