@@ -1,185 +1,56 @@
-import spaghetti from "../../assets/spaghetti.png";
+import { useState } from "react";
 import { Card, InfoCard } from "../HomeFeaturedFood/styles";
-import { ButtonPay, ContainerList, HeaderFooter } from "./styles";
-import sushi from "../../assets/sushi.png";
-import { Container } from "../../utils/styles";
+import { ButtonPay } from "./styles";
 import PayFood from "../../components/PayFood";
 import useOpenForPay from "../ListFoodForType/pay";
-const ListFood = () => {
+
+type Props = {
+  foto: string;
+  id: number;
+  nome: string;
+  descricao: string;
+  preco: number;
+  porcao: string;
+};
+
+const ListFood = ({ foto, nome, descricao, id, preco, porcao }: Props) => {
   const { open, setOpen } = useOpenForPay();
+  const [pratoSelecionado, setPratoSelecionado] = useState<Props | null>(null);
 
   return (
     <>
-      <HeaderFooter
-        style={{
-          backgroundImage: `url(${spaghetti})`,
-          height: "280px",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      >
-        <Container>
-          <h2>tipo do prato </h2>
-          <h1>Nome do Restaurante </h1>
-        </Container>
-      </HeaderFooter>
-      <ContainerList $home={false}>
-        <Card>
-          <img src={sushi} />
-          <InfoCard>
-            <div>
-              <h3>nome do prato</h3>
-            </div>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam
-              sint nisi itaque debitis placeat explicabo natus laboriosam omnis
-              unde quae fugiat eius laudantium impedit et harum recusandae,
-              quasi animi? Vitae!
-            </p>
-          </InfoCard>
-          <ButtonPay onClick={() => setOpen(true)}>
-            Adicionar ao carrinho
-          </ButtonPay>
-        </Card>
-        <Card>
-          <img src={sushi} />
-          <InfoCard>
-            <div>
-              <h3>nome do prato</h3>
-            </div>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam
-              sint nisi itaque debitis placeat explicabo natus laboriosam omnis
-              unde quae fugiat eius laudantium impedit et harum recusandae,
-              quasi animi? Vitae!
-            </p>
-          </InfoCard>
-          <ButtonPay onClick={() => setOpen(true)}>
-            Adicionar ao carrinho
-          </ButtonPay>
-        </Card>{" "}
-        <Card>
-          <img src={sushi} />
-          <InfoCard>
-            <div>
-              <h3>nome do prato</h3>
-            </div>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam
-              sint nisi itaque debitis placeat explicabo natus laboriosam omnis
-              unde quae fugiat eius laudantium impedit et harum recusandae,
-              quasi animi? Vitae!
-            </p>
-          </InfoCard>
-          <ButtonPay onClick={() => setOpen(true)}>
-            Adicionar ao carrinho
-          </ButtonPay>
-        </Card>{" "}
-        <Card>
-          <img src={sushi} />
-          <InfoCard>
-            <div>
-              <h3>nome do prato</h3>
-            </div>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam
-              sint nisi itaque debitis placeat explicabo natus laboriosam omnis
-              unde quae fugiat eius laudantium impedit et harum recusandae,
-              quasi animi? Vitae!
-            </p>
-          </InfoCard>
-          <ButtonPay onClick={() => setOpen(true)}>
-            Adicionar ao carrinho
-          </ButtonPay>
-        </Card>{" "}
-        <Card>
-          <img src={sushi} />
-          <InfoCard>
-            <div>
-              <h3>nome do prato</h3>
-            </div>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam
-              sint nisi itaque debitis placeat explicabo natus laboriosam omnis
-              unde quae fugiat eius laudantium impedit et harum recusandae,
-              quasi animi? Vitae!
-            </p>
-          </InfoCard>
-          <ButtonPay onClick={() => setOpen(true)}>
-            Adicionar ao carrinho
-          </ButtonPay>
-        </Card>{" "}
-        <Card>
-          <img src={sushi} />
-          <InfoCard>
-            <div>
-              <h3>nome do prato</h3>
-            </div>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam
-              sint nisi itaque debitis placeat explicabo natus laboriosam omnis
-              unde quae fugiat eius laudantium impedit et harum recusandae,
-              quasi animi? Vitae!
-            </p>
-          </InfoCard>
-          <ButtonPay onClick={() => setOpen(true)}>
-            Adicionar ao carrinho
-          </ButtonPay>
-        </Card>{" "}
-        <Card>
-          <img src={sushi} />
-          <InfoCard>
-            <div>
-              <h3>nome do prato</h3>
-            </div>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam
-              sint nisi itaque debitis placeat explicabo natus laboriosam omnis
-              unde quae fugiat eius laudantium impedit et harum recusandae,
-              quasi animi? Vitae!
-            </p>
-          </InfoCard>
-          <ButtonPay onClick={() => setOpen(true)}>
-            Adicionar ao carrinho
-          </ButtonPay>
-        </Card>{" "}
-        <Card>
-          <img src={sushi} />
-          <InfoCard>
-            <div>
-              <h3>nome do prato</h3>
-            </div>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam
-              sint nisi itaque debitis placeat explicabo natus laboriosam omnis
-              unde quae fugiat eius laudantium impedit et harum recusandae,
-              quasi animi? Vitae!
-            </p>
-          </InfoCard>
-          <ButtonPay onClick={() => setOpen(true)}>
-            Adicionar ao carrinho
-          </ButtonPay>
-        </Card>{" "}
-        <Card>
-          <img src={sushi} />
-          <InfoCard>
-            <div>
-              <h3>nome do prato</h3>
-            </div>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam
-              sint nisi itaque debitis placeat explicabo natus laboriosam omnis
-              unde quae fugiat eius laudantium impedit et harum recusandae,
-              quasi animi? Vitae!
-            </p>
-          </InfoCard>
-          <ButtonPay onClick={() => setOpen(true)}>
-            Adicionar ao carrinho
-          </ButtonPay>
-        </Card>
-      </ContainerList>
-      <PayFood open={open} setOpen={setOpen} />
+      <Card>
+        <img src={foto} />
+        <InfoCard>
+          <div>
+            <h3>{nome}</h3>
+          </div>
+          <p>{descricao}</p>
+        </InfoCard>
+        <ButtonPay
+          onClick={() => {
+            setPratoSelecionado({ foto, nome, descricao, id, preco, porcao });
+            setOpen(true);
+          }}
+        >
+          Adicionar ao carrinho
+        </ButtonPay>
+      </Card>
+
+      {pratoSelecionado && (
+        <PayFood
+          open={open}
+          setOpen={setOpen}
+          id={pratoSelecionado.id}
+          foto={pratoSelecionado.foto}
+          nome={pratoSelecionado.nome}
+          descricao={pratoSelecionado.descricao}
+          porcao={pratoSelecionado.porcao}
+          preco={pratoSelecionado.preco}
+        />
+      )}
     </>
   );
 };
+
 export default ListFood;

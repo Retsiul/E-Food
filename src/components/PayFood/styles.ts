@@ -9,20 +9,17 @@ type PropsVisible={
 
 
 export const ContainerPayfood=styled.div<PropsVisible>`
-z-index:0;
-top:0;
+left:0;
 position:fixed;
 background:rgba(0,0,0,0.8);
-height:100vh;
+height:100%;
 width:100vw;
 display:${({isVisible})=>(isVisible?'grid':'none') };
-place-items: center;
-
-
+top:-8px;
+z-index:1;
 
 
 ${Container}{
-background:red;
 width:100%;
 display:flex;
 margin: auto;
@@ -46,31 +43,32 @@ display:flex;
 flex-direction:column;
 justify-content:space-between;
 
-h3{
-margin:0;
+                      h3{
+                    margin:0;
+                          }
+
+                  ${ButtonPay}{
+                      width:218px;
+                          }
+
 }
 
-${ButtonPay}{
-width:218px;
-}
-
-}
-
-img{
-aspect-ratio:1/1;
-}
+          img{
+        aspect-ratio:1/1;
+        } 
 
 
 
 
-.closed{
-position:absolute;
-right:8px;
-top:8px;
-  width:16px;
-  aspect-ratio:1/1;
-  cursor:pointer;
-}
+      .closed{
+      position:absolute;
+       right:8px;
+    top:8px;
+   width:16px;
+    aspect-ratio:1/1;
+    cursor:pointer;
+          }
+
 
 }
 

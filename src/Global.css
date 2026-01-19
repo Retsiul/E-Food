@@ -10,13 +10,11 @@
     padding: 0;
     margin: 0;
     font-family: "Roboto", sans-serif;
-
+    list-style: none;
 
 }
-
 
 body {
     background-color: var(--background);
     color: var(--featuredColor);
-
 }

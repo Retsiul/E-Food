@@ -7,7 +7,7 @@ const Rotas = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/list" element={<Categories />} />
+      <Route path="/list/:id" element={<Categories />} />
     </Routes>
   );
 };
