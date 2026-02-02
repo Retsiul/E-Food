@@ -33,7 +33,7 @@ const ListFood = ({ foto, nome, descricao, id, preco, porcao }: Props) => {
             setOpen(true);
           }}
         >
-          Adicionar ao carrinho
+          Saiba mais
         </ButtonPay>
       </Card>
 

@@ -3,8 +3,10 @@ import { Card, InfoCard } from "../HomeFeaturedFood/styles";
 import { ContainerPayfood } from "./styles";
 import { ButtonPay } from "../ListFoodForType/styles";
 import close from "../../assets/icon-close.svg";
+import { useDispatch } from "react-redux";
+import { add } from "../../store/reducers/sliceCart";
 
-type PayFoodProps = {
+export type PayFoodProps = {
   open?: boolean;
   setOpen?: React.Dispatch<React.SetStateAction<boolean>>;
   id: number;
@@ -12,7 +14,7 @@ type PayFoodProps = {
   preco: number;
   nome: string;
   descricao: string;
-  porcao: string;
+  porcao?: string;
 };
 
 const PayFood = ({
@@ -23,12 +25,18 @@ const PayFood = ({
   descricao,
   porcao,
   preco,
+  id,
 }: PayFoodProps) => {
   const formatPrice = (preco = 0) => {
     return new Intl.NumberFormat("pt-BR", {
       style: "currency",
       currency: "BRL",
     }).format(preco);
+  };
+
+  const dispatch = useDispatch();
+  const addToCart = () => {
+    dispatch(add({ id, foto, nome, preco }));
   };
 
   return (
@@ -43,9 +51,14 @@ const PayFood = ({
                   <h3>{nome}</h3>
                 </div>
                 <p>{descricao}</p>
-                <span> Serve:{porcao}</span>
+                <span> Serve : {porcao}</span>
 
-                <ButtonPay>
+                <ButtonPay
+                  onClick={() => {
+                    setOpen(false);
+                    addToCart();
+                  }}
+                >
                   Adicionar ao carrinho - {formatPrice(preco)}
                 </ButtonPay>
               </InfoCard>
