@@ -32,6 +32,8 @@ p{
 display:flex;
 justify-content:space-between;
 margin-bottom:8px;
+font-size:14px;
+font-weight:700;
 }
 
 button{
@@ -41,6 +43,8 @@ border:none;
 width:100%;
 display:block;
 padding:4px 0;
+font-size:14px;
+font-weight:700;
 }
 }
 
@@ -77,7 +81,15 @@ margin-right:8px;
 div{
 
 h3{
-margin-bottom:16px;}
+margin-bottom:16px;
+font-size:18px;
+font-weight:bold;
+}
+
+p{
+font-size:14px;
+font-weight:400;
+}
 
 }
 
