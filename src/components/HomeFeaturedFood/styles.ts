@@ -76,7 +76,9 @@ const button = css`
   border: none;
   font-size: 14px;
   @media (max-width: ${breakPoints.tablet}) {
-    width: 94%;
+    display: block;
+    margin-right: 8px;
+    margin-left: 8px;
     text-align: center;
   }
 `;
