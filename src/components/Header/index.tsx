@@ -5,7 +5,7 @@ import { AncorHome, ContainerHeader, Slogan } from "./styles";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootReducer } from "../../store";
 import { open } from "../../store/reducers/sliceCart";
-
+import logoEfood from "../../assets/logo.svg";
 const Header = () => {
   const location = useLocation();
 
@@ -32,7 +32,10 @@ const Header = () => {
       >
         {isHome ? (
           <>
-            <Logo></Logo>
+            <h1>
+              {" "}
+              <Logo src={logoEfood} alt="efood" />
+            </h1>
             <Slogan>
               Viva experiências gastronômicas
               <br />
@@ -45,7 +48,10 @@ const Header = () => {
               Restaurantes
             </AncorHome>{" "}
             <Link to="/">
-              <Logo></Logo>
+              <h1>
+                {" "}
+                <Logo src={logoEfood} alt="efood" />
+              </h1>
             </Link>
             <a
               onClick={() => {

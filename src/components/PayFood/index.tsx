@@ -4,7 +4,7 @@ import { ContainerPayfood } from "./styles";
 import { ButtonPay } from "../ListFoodForType/styles";
 import close from "../../assets/icon-close.svg";
 import { useDispatch, useSelector } from "react-redux";
-import { add, open } from "../../store/reducers/sliceCart";
+import { add } from "../../store/reducers/sliceCart";
 import type { RootReducer } from "../../store";
 
 export type PayFoodProps = {
@@ -47,7 +47,6 @@ const PayFood = ({
     }
 
     dispatch(add({ id, foto, nome, preco }));
-    dispatch(open());
     setOpen?.(false);
   };
 

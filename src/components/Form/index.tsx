@@ -203,7 +203,7 @@ const Form = ({ setStep }: Props) => {
             </label>
           </div>
 
-          <label htmlFor="addressComplement">Complemento</label>
+          <label htmlFor="addressComplement">Complemento ( Opcional ) </label>
           <input
             id="addressComplement"
             name="addressComplement"

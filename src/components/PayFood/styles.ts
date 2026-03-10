@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { Container } from "../../utils/styles";
 import { Card, InfoCard } from "../HomeFeaturedFood/styles";
 import { ButtonPay } from "../ListFoodForType/styles";
+import { breakPoints } from "../../utils/variables";
 
 type PropsVisible = {
   $isVisible: boolean;
@@ -32,6 +33,11 @@ export const ContainerPayfood = styled.div<PropsVisible>`
       gap: 24px;
       border: none;
 
+      @media (max-width: ${breakPoints.tablet}) {
+        display: flex;
+        flex-direction: column;
+      }
+
       ${InfoCard} {
         padding: 0;
         margin: 0;
@@ -39,6 +45,9 @@ export const ContainerPayfood = styled.div<PropsVisible>`
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        @media (max-width: ${breakPoints.tablet}) {
+          gap: 10px;
+        }
 
         h3 {
           margin: 0;

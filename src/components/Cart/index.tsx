@@ -67,6 +67,9 @@ const Cart = () => {
                   <button onClick={() => setStep("form")}>
                     Continuar para compra
                   </button>
+                  <button className="close-cart" onClick={closeCart}>
+                    Fechar carrinho
+                  </button>
                 </div>
               </>
             )}

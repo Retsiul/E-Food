@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Container } from "../../utils/styles";
-import { variables } from "../../utils/variables";
+import { breakPoints, variables } from "../../utils/variables";
 
 type ContainerHeaderProps = {
   $isHome?: boolean;
@@ -19,12 +19,29 @@ export const ContainerHeader = styled.div<ContainerHeaderProps>`
   align-items: center;
   justify-content: space-between;
 
+  @media (max-width: ${breakPoints.tablet}) {
+    gap: ${({ $isHome }) => ($isHome ? "20px" : " ")};
+    padding: 20px;
+    justify-content: ${({ $isHome }) => ($isHome ? "center" : " ")};
+  }
+
   ${Container} {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
     padding: 0;
+
+    @media (max-width: ${breakPoints.tablet}) {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      gap: 50px;
+
+      ${AncorHome} {
+        display: none;
+      }
+    }
   }
 
   a,
@@ -41,4 +58,8 @@ export const Slogan = styled.h1`
   font-weight: 900;
   position: relative;
   margin-top: 40px;
+
+  @media (max-width: ${breakPoints.tablet}) {
+    font-size: 20px;
+  }
 `;

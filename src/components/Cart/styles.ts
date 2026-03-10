@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { variables } from "../../utils/variables";
+import { breakPoints, variables } from "../../utils/variables";
 import trashIcon from "../../assets/icon-trash.svg";
 type Props = {
   $isOpen: boolean;
@@ -39,6 +39,7 @@ export const CartContainer = styled.div<Props>`
       background: ${variables.secondColor};
       color: ${variables.featuredColor};
       border: none;
+      margin-bottom: 16px;
       width: 100%;
       display: block;
       padding: 4px 0;
@@ -55,7 +56,20 @@ export const Sidebar = styled.aside`
   color: ${variables.secondColor};
   height: 100vh;
   z-index: 0;
-  padding: 32px 8px 0 8px;
+  padding: 32px 8px 32px 8px;
+
+  .close-cart {
+    display: none;
+  }
+
+  @media (max-width: ${breakPoints.tablet}) {
+    overflow: scroll;
+    max-width: 100%;
+
+    .close-cart {
+      display: block;
+    }
+  }
 `;
 
 export const Card = styled.li`

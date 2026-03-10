@@ -1,67 +1,70 @@
 import styled from "styled-components";
 import { Container } from "../../utils/styles";
-import { variables } from "../../utils/variables";
+import { breakPoints, variables } from "../../utils/variables";
 
+export const HeaderFooter = styled.header`
+  position: relative;
 
-export const HeaderFooter=styled.header`
+  &::before {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    content: "";
+    background: #11111173;
+    z-index: 0;
+  }
 
-position:relative;
+  ${Container} {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-evenly;
+    padding: 0 40px;
+    color: #fff;
+    position: relative;
 
-&::before{
-position: absolute;
-top:0;
-width:100%;
-height:100%;
-content:'';
-background: #11111173;
-z-index:0;
-}
+    h1 {
+      font-weight: 900;
+      font-size: 32px;
+    }
 
-${Container}{
-display:flex;
-flex-direction:column;
-height:100%;
-justify-content:space-evenly;
-padding:0 40px;
-color:#fff;
-position:relative;
+    h2 {
+      font-family: Roboto;
+      font-weight: 100;
+      font-size: 32px;
+    }
 
-h1{
-font-weight: 900;
-font-size: 32px;
-}
+    @media (max-width: ${breakPoints.tablet}) {
+      align-items: center;
+      text-align: center;
+    }
+  }
+`;
 
-h2{
-font-family: Roboto;
-font-weight: 100;
-font-size: 32px;
-}
-}
+export const ContainerList = styled(Container)`
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 32px;
 
+  div {
+    padding: 0;
+    margin-top: 8px;
+  }
 
+  @media (max-width: ${breakPoints.tablet}) {
+    grid-template-columns: 1fr;
+  }
+`;
 
-`
-
-export const ContainerList =styled(Container)`
-grid-template-columns:1fr 1fr 1fr;
-gap:32px;
-
- div{
-padding:0;
-margin-top:8px;
-
-}
-
-`
-
-export const ButtonPay=styled.button`
-padding:4px 0;
-border:none;
-color:auto;
-font-weight:700;
-font-size:14px;
-width:100%;
-display:inline-block;
-color:${variables.featuredColor};
-background:${variables.secondColor};
-cursor:pointer;`
+export const ButtonPay = styled.button`
+  padding: 4px 0;
+  border: none;
+  color: auto;
+  font-weight: 700;
+  font-size: 14px;
+  width: 100%;
+  display: inline-block;
+  color: ${variables.featuredColor};
+  background: ${variables.secondColor};
+  cursor: pointer;
+`;

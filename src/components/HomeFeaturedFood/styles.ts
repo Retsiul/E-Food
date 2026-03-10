@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { variables } from "../../utils/variables";
+import { breakPoints, variables } from "../../utils/variables";
 
 export const Card = styled.div`
   position: relative;
@@ -75,6 +75,10 @@ const button = css`
   margin-left: 8px;
   border: none;
   font-size: 14px;
+  @media (max-width: ${breakPoints.tablet}) {
+    width: 94%;
+    text-align: center;
+  }
 `;
 
 export const Tag = styled.span<{ $variant?: "badge" | "button" }>`
