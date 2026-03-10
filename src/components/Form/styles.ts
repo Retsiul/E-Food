@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { variables } from "../../utils/variables";
+import { breakPoints, variables } from "../../utils/variables";
 
 type Props = {
   $isVisible: boolean;
@@ -47,6 +47,15 @@ export const FormContainer = styled.div`
 
     input {
       width: 100%;
+    }
+
+    @media (max-width: ${breakPoints.tablet}) {
+      justify-content: space-between;
+      gap: 32px;
+
+      label {
+        width: 100%;
+      }
     }
   }
 `;
@@ -108,6 +117,15 @@ export const PaymentContainer = styled.div<Props>`
 
     #label-cvv {
       width: 30%;
+    }
+
+    @media (max-width: ${breakPoints.tablet}) {
+      justify-content: space-between;
+      gap: 32px;
+
+      label {
+        width: 100%;
+      }
     }
   }
 

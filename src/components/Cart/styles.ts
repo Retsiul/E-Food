@@ -39,7 +39,6 @@ export const CartContainer = styled.div<Props>`
       background: ${variables.secondColor};
       color: ${variables.featuredColor};
       border: none;
-      margin-bottom: 16px;
       width: 100%;
       display: block;
       padding: 4px 0;
@@ -68,6 +67,7 @@ export const Sidebar = styled.aside`
 
     .close-cart {
       display: block;
+      margin-top: 8px;
     }
   }
 `;
