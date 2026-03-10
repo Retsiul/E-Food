@@ -3,11 +3,12 @@ import { Card, InfoCard } from "../HomeFeaturedFood/styles";
 import { ContainerPayfood } from "./styles";
 import { ButtonPay } from "../ListFoodForType/styles";
 import close from "../../assets/icon-close.svg";
-import { useDispatch } from "react-redux";
-import { add } from "../../store/reducers/sliceCart";
+import { useDispatch, useSelector } from "react-redux";
+import { add, open } from "../../store/reducers/sliceCart";
+import type { RootReducer } from "../../store";
 
 export type PayFoodProps = {
-  open?: boolean;
+  openModal?: boolean;
   setOpen?: React.Dispatch<React.SetStateAction<boolean>>;
   id: number;
   foto: string;
@@ -18,7 +19,7 @@ export type PayFoodProps = {
 };
 
 const PayFood = ({
-  open,
+  openModal,
   setOpen,
   foto,
   nome,
@@ -35,14 +36,25 @@ const PayFood = ({
   };
 
   const dispatch = useDispatch();
+  const items = useSelector((state: RootReducer) => state.cart.items);
+
   const addToCart = () => {
+    const itemExiste = items.some((item) => item.id === id);
+
+    if (itemExiste) {
+      alert("Este prato já está no carrinho");
+      return;
+    }
+
     dispatch(add({ id, foto, nome, preco }));
+    dispatch(open());
+    setOpen?.(false);
   };
 
   return (
     <>
-      {open && setOpen && (
-        <ContainerPayfood isVisible={open} onClick={() => setOpen(false)}>
+      {openModal && setOpen && (
+        <ContainerPayfood $isVisible={openModal} onClick={() => setOpen(false)}>
           <Container>
             <Card onClick={(e) => e.stopPropagation()}>
               <img src={foto} />

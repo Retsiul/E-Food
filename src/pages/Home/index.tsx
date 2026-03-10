@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
 import HomeList from "../../components/HomeFeaturedFood/list";
+import { useGetRestaurantsQuery } from "../../services/api";
 
 export interface Foods {
   id: number;
@@ -23,22 +23,12 @@ export interface Foods {
 }
 
 const Home = () => {
-  console.log(
-    "Melanzane alla Parmigiana é um delicioso prato à base de berinjelas, em camadas com molho de tomate caseiro, queijo muçarela e parmesão, assado até ficar dourado e borbulhante. Uma opção saborosa e reconfortante, perfeita para os amantes de legumes e queijo."
-      .length,
-  );
-
-  const [listFoods, setLisFoods] = useState<Foods[]>([]);
-
-  useEffect(() => {
-    fetch("https://api-ebac.vercel.app/api/efood/restaurantes")
-      .then((resp) => resp.json())
-      .then((resp) => setLisFoods(resp));
-  }, []);
+  const { data: restaurants = [], isLoading: isLoadingRestaurants } =
+    useGetRestaurantsQuery();
 
   return (
     <>
-      <HomeList food={listFoods} />
+      <HomeList food={restaurants} isLoading={isLoadingRestaurants} />
     </>
   );
 };

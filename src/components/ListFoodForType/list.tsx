@@ -1,13 +1,18 @@
 import ListFood from ".";
+import Loader from "../../Loader";
 import type { Foods } from "../../pages/Home";
 import { Container } from "../../utils/styles";
 import { ContainerList, HeaderFooter } from "./styles";
 
 type PropsListType = {
   foodType: Foods[];
+  isLoading: boolean;
 };
 
-const FoodListForType = ({ foodType }: PropsListType) => {
+const FoodListForType = ({ foodType, isLoading }: PropsListType) => {
+  if (isLoading) {
+    return <Loader />;
+  }
   return (
     <>
       {foodType.map((f) => (

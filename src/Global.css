@@ -18,3 +18,21 @@ body {
     background-color: var(--background);
     color: var(--featuredColor);
 }
+
+.msg-success {
+    & span {
+        display: block;
+        font-size: 16px;
+        font-weight: 700;
+        margin-bottom: 16px;
+    }
+
+    & p {
+
+        font-size: 14px !important;
+        font-weight: 400 !important;
+        line-height: 22px !important;
+        margin-bottom: 24px !important;
+
+    }
+}

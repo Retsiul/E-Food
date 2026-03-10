@@ -14,7 +14,7 @@ type Props = {
 };
 
 const ListFood = ({ foto, nome, descricao, id, preco, porcao }: Props) => {
-  const { open, setOpen } = useOpenForPay();
+  const { openPay, setOpenPay } = useOpenForPay();
   const [pratoSelecionado, setPratoSelecionado] = useState<Props | null>(null);
 
   return (
@@ -30,7 +30,7 @@ const ListFood = ({ foto, nome, descricao, id, preco, porcao }: Props) => {
         <ButtonPay
           onClick={() => {
             setPratoSelecionado({ foto, nome, descricao, id, preco, porcao });
-            setOpen(true);
+            setOpenPay(true);
           }}
         >
           Saiba mais
@@ -39,8 +39,8 @@ const ListFood = ({ foto, nome, descricao, id, preco, porcao }: Props) => {
 
       {pratoSelecionado && (
         <PayFood
-          open={open}
-          setOpen={setOpen}
+          openModal={openPay}
+          setOpen={setOpenPay}
           id={pratoSelecionado.id}
           foto={pratoSelecionado.foto}
           nome={pratoSelecionado.nome}

@@ -1,12 +1,17 @@
 import FeaturedFood from ".";
+import Loader from "../../Loader";
 import type { Foods } from "../../pages/Home";
 import { Container } from "../../utils/styles";
 
 type PropsHomeList = {
   food: Foods[];
+  isLoading: boolean;
 };
 
-const HomeList = ({ food }: PropsHomeList) => {
+const HomeList = ({ food, isLoading }: PropsHomeList) => {
+  if (isLoading) {
+    return <Loader />;
+  }
   return (
     <Container as="ul" $home={true}>
       {food.map((f) => (

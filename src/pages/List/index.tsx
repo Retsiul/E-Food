@@ -1,20 +1,20 @@
-import { useEffect, useState } from "react";
-import type { Foods } from "../Home";
 import FoodListForType from "../../components/ListFoodForType/list";
 import { useParams } from "react-router-dom";
+import { useGetListQuery } from "../../services/api";
+
+type ListParans = {
+  id: string;
+};
 
 const List = () => {
-  const { id } = useParams();
-
-  const [listType, setLisType] = useState<Foods | null>(null);
-
-  useEffect(() => {
-    fetch(`https://api-ebac.vercel.app/api/efood/restaurantes/${id}`)
-      .then((resp) => resp.json())
-      .then((resp) => setLisType(resp));
-  }, [id]);
-
-  return <>{listType && <FoodListForType foodType={[listType]} />}</>;
+  const { id } = useParams() as ListParans;
+  const { data: list, isLoading: isLoadingList } = useGetListQuery(id);
+  if (!list) return null;
+  return (
+    <>
+      <FoodListForType foodType={[list]} isLoading={isLoadingList} />
+    </>
+  );
 };
 
 export default List;

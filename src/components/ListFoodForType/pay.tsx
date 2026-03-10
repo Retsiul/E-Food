@@ -1,9 +1,14 @@
 import { useState } from "react";
+import type { CartItem } from "../../types";
 
 const useOpenForPay = () => {
-  const [open, setOpen] = useState(false);
+  const [openPay, setOpenPay] = useState(false);
 
-  return { open, setOpen };
+  return { openPay, setOpenPay };
+};
+
+export const getTotalPrice = (items: CartItem[]) => {
+  return items.reduce((acc, item) => acc + item.preco, 0);
 };
 
 export default useOpenForPay;

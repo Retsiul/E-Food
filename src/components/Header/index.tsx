@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import backgroundHeader from "../../assets/fundo.svg";
 import { Container, Logo } from "../../utils/styles";
-import { ContainerHeader, Slogan } from "./styles";
+import { AncorHome, ContainerHeader, Slogan } from "./styles";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootReducer } from "../../store";
 import { open } from "../../store/reducers/sliceCart";
@@ -16,6 +16,12 @@ const Header = () => {
 
   const openCart = () => {
     dispatch(open());
+  };
+
+  const alerting = () => {
+    if (items.length === 0) {
+      return alert("Você não tem itens no carrrinho!");
+    }
   };
 
   return (
@@ -35,11 +41,25 @@ const Header = () => {
           </>
         ) : (
           <Container>
-            <a>Restaurantes</a>{" "}
+            <AncorHome as={Link} to="/">
+              Restaurantes
+            </AncorHome>{" "}
             <Link to="/">
               <Logo></Logo>
             </Link>
-            <a onClick={openCart}> {items.length} produto(s) no carrinho</a>
+            <a
+              onClick={() => {
+                openCart();
+                alerting();
+              }}
+            >
+              {" "}
+              {items.length > 0 ? (
+                <>{items.length} produto(s) no carrinho</>
+              ) : (
+                <>Sem produtos no carrinho</>
+              )}
+            </a>
           </Container>
         )}
       </ContainerHeader>

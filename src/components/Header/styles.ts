@@ -1,36 +1,44 @@
 import styled from "styled-components";
 import { Container } from "../../utils/styles";
+import { variables } from "../../utils/variables";
 
 type ContainerHeaderProps = {
   $isHome?: boolean;
 };
 
-export const ContainerHeader=styled.div<ContainerHeaderProps>`
-padding:40px;
-height:${({$isHome})=>($isHome?'384px':'170px')};
-display:flex;
-flex-direction:column;
-align-items:center;
-justify-content:space-between;
+export const AncorHome = styled.a`
+  text-decoration: none;
+  color: ${variables.featuredColor};
+`;
 
-${Container}{
-display:flex;
-flex-wrap:wrap;
-align-items:center;
-justify-content:space-between;
-padding:0;}
+export const ContainerHeader = styled.div<ContainerHeaderProps>`
+  padding: 40px;
+  height: ${({ $isHome }) => ($isHome ? "384px" : "170px")};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 
-a{
-font-weight: 900;
-font-size: 18px;
-cursor:pointer;
-}
-`
+  ${Container} {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0;
+  }
 
-export const Slogan= styled.h1`
-text-align:center;
-font-size:36px;
-font-weight: 900;
-position:relative;
-margin-top:40px;
-`
+  a,
+  ${AncorHome} {
+    font-weight: 900;
+    font-size: 18px;
+    cursor: pointer;
+  }
+`;
+
+export const Slogan = styled.h1`
+  text-align: center;
+  font-size: 36px;
+  font-weight: 900;
+  position: relative;
+  margin-top: 40px;
+`;
