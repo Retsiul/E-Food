@@ -45,42 +45,74 @@ const Form = ({ setStep }: Props) => {
     },
 
     validationSchema: Yup.object({
-      client: Yup.string().min(4).required("Campo obrigatório"),
+      client: Yup.string()
+        .matches(/^[A-Za-zÀ-ÿ\s'-]+$/, "Digite apenas letras")
+        .min(4, "Nome muito curto")
+        .required("Campo obrigatório"),
 
-      address: Yup.string().required("Campo obrigatório"),
-      city: Yup.string().required("Campo obrigatório"),
-      cep: Yup.string().required("Campo obrigatório"),
-      addressNumber: Yup.string().required("Campo obrigatório"),
+      address: Yup.string()
+        .matches(/^[A-Za-zÀ-ÿ0-9\s,.-]+$/, "Endereço inválido")
+        .min(5, "Endereço muito curto")
+        .required("Campo obrigatório"),
+
+      city: Yup.string()
+        .matches(/^[A-Za-zÀ-ÿ\s'-]+$/, "Digite apenas letras")
+        .min(3, "Cidade inválida")
+        .required("Campo obrigatório"),
+
+      cep: Yup.string()
+        .length(8, "CEP deve ter 8 dígitos")
+        .required("Campo obrigatório"),
+
+      addressNumber: Yup.string()
+        .min(1, "Número inválido")
+        .required("Campo obrigatório"),
 
       addressComplement: Yup.string(),
 
       cardOwner: Yup.string().when([], {
         is: () => stepForm === "payment",
-        then: (schema) => schema.required("Campo obrigatório"),
+        then: (schema) =>
+          schema
+            .matches(/^[A-Za-zÀ-ÿ\s'-]+$/, "Digite apenas letras")
+            .min(4, "Nome muito curto")
+            .required("Campo obrigatório"),
         otherwise: (schema) => schema,
       }),
 
       cardNumber: Yup.string().when([], {
         is: () => stepForm === "payment",
-        then: (schema) => schema.required("Campo obrigatório"),
+        then: (schema) =>
+          schema
+            .length(16, "Cartão deve ter 16 dígitos")
+            .required("Campo obrigatório"),
         otherwise: (schema) => schema,
       }),
 
       CVV: Yup.string().when([], {
         is: () => stepForm === "payment",
-        then: (schema) => schema.required("Campo obrigatório"),
+        then: (schema) =>
+          schema
+            .length(3, "CVV deve ter 3 dígitos")
+            .required("Campo obrigatório"),
         otherwise: (schema) => schema,
       }),
 
       expiresMonth: Yup.string().when([], {
         is: () => stepForm === "payment",
-        then: (schema) => schema.required("Campo obrigatório"),
+        then: (schema) =>
+          schema
+            .matches(/^(0[1-9]|1[0-2])$/, "Mês inválido (01 a 12) ")
+            .required("Campo obrigatório"),
         otherwise: (schema) => schema,
       }),
 
       expiresYear: Yup.string().when([], {
         is: () => stepForm === "payment",
-        then: (schema) => schema.required("Campo obrigatório"),
+        then: (schema) =>
+          schema
+            .matches(/^\d{4}$/, "Digite os 4 dígitos do ano")
+            .required("Campo obrigatório"),
         otherwise: (schema) => schema,
       }),
     }),
@@ -129,7 +161,11 @@ const Form = ({ setStep }: Props) => {
   const [triedNext, setTriedNext] = useState(false);
 
   const isInvalid = (field: keyof typeof form.values) =>
-    !!form.errors[field] && (form.submitCount > 0 || triedNext);
+    !!form.errors[field] &&
+    (form.touched[field] || form.submitCount > 0 || triedNext);
+
+  const isInvalidCard = (field: keyof typeof form.values) =>
+    !!form.errors[field] && (form.touched[field] || form.submitCount > 0);
 
   return (
     <form onSubmit={form.handleSubmit}>
@@ -143,9 +179,10 @@ const Form = ({ setStep }: Props) => {
             name="client"
             value={form.values.client}
             onChange={form.handleChange}
+            onBlur={form.handleBlur}
             className={isInvalid("client") ? "input-error" : ""}
-            placeholder="Campo Obrigatório, Nome completo"
           />
+          {isInvalid("client") && <small>{form.errors.client}</small>}
 
           <label htmlFor="address">Endereço</label>
           <input
@@ -153,9 +190,10 @@ const Form = ({ setStep }: Props) => {
             name="address"
             value={form.values.address}
             onChange={form.handleChange}
+            onBlur={form.handleBlur}
             className={isInvalid("address") ? "input-error" : ""}
-            placeholder="Campo Obrigatório"
           />
+          {isInvalid("address") && <small>{form.errors.address}</small>}
 
           <label htmlFor="city">Cidade</label>
           <input
@@ -163,9 +201,10 @@ const Form = ({ setStep }: Props) => {
             name="city"
             value={form.values.city}
             onChange={form.handleChange}
+            onBlur={form.handleBlur}
             className={isInvalid("city") ? "input-error" : ""}
-            placeholder="Campo Obrigatório"
           />
+          {isInvalid("city") && <small>{form.errors.city}</small>}
 
           <div>
             <label>
@@ -180,8 +219,8 @@ const Form = ({ setStep }: Props) => {
                 onAccept={(value: string) => form.setFieldValue("cep", value)}
                 onBlur={form.handleBlur}
                 className={isInvalid("cep") ? "input-error" : ""}
-                placeholder="Campo Obrigatório"
               />
+              {isInvalid("cep") && <small>{form.errors.cep}</small>}
             </label>
 
             <label>
@@ -198,8 +237,10 @@ const Form = ({ setStep }: Props) => {
                 }
                 onBlur={form.handleBlur}
                 className={isInvalid("addressNumber") ? "input-error" : ""}
-                placeholder="Campo Obrigatório"
               />
+              {isInvalid("addressNumber") && (
+                <small>{form.errors.addressNumber}</small>
+              )}
             </label>
           </div>
 
@@ -250,9 +291,10 @@ const Form = ({ setStep }: Props) => {
             name="cardOwner"
             value={form.values.cardOwner}
             onChange={form.handleChange}
-            className={isInvalid("cardOwner") ? "input-error" : ""}
-            placeholder="Campo Obrigatório"
+            onBlur={form.handleBlur}
+            className={isInvalidCard("cardOwner") ? "input-error" : ""}
           />
+          {isInvalidCard("cardOwner") && <small>{form.errors.cardOwner}</small>}
 
           <div>
             <label>
@@ -268,9 +310,11 @@ const Form = ({ setStep }: Props) => {
                   form.setFieldValue("cardNumber", value)
                 }
                 onBlur={form.handleBlur}
-                className={isInvalid("cardNumber") ? "input-error" : ""}
-                placeholder="Campo Obrigatório"
+                className={isInvalidCard("cardNumber") ? "input-error" : ""}
               />
+              {isInvalidCard("cardNumber") && (
+                <small>{form.errors.cardNumber}</small>
+              )}
             </label>
 
             <label>
@@ -284,9 +328,9 @@ const Form = ({ setStep }: Props) => {
                 value={form.values.CVV}
                 onAccept={(value: string) => form.setFieldValue("CVV", value)}
                 onBlur={form.handleBlur}
-                className={isInvalid("CVV") ? "input-error" : ""}
-                placeholder="Campo Obrigatório"
+                className={isInvalidCard("CVV") ? "input-error" : ""}
               />
+              {isInvalidCard("CVV") && <small>{form.errors.CVV}</small>}
             </label>
           </div>
 
@@ -304,9 +348,11 @@ const Form = ({ setStep }: Props) => {
                   form.setFieldValue("expiresMonth", value)
                 }
                 onBlur={form.handleBlur}
-                className={isInvalid("expiresMonth") ? "input-error" : ""}
-                placeholder="Campo Obrigatório"
+                className={isInvalidCard("expiresMonth") ? "input-error" : ""}
               />
+              {isInvalidCard("expiresMonth") && (
+                <small>{form.errors.expiresMonth}</small>
+              )}
             </label>
 
             <label>
@@ -322,9 +368,11 @@ const Form = ({ setStep }: Props) => {
                   form.setFieldValue("expiresYear", value)
                 }
                 onBlur={form.handleBlur}
-                className={isInvalid("expiresYear") ? "input-error" : ""}
-                placeholder="Campo Obrigatório"
+                className={isInvalidCard("expiresYear") ? "input-error" : ""}
               />
+              {isInvalidCard("expiresYear") && (
+                <small>{form.errors.expiresYear}</small>
+              )}
             </label>
           </div>
 

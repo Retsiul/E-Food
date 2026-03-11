@@ -7,12 +7,14 @@ type Props = {
 
 export const FormContainer = styled.div`
   .input-error {
-    box-shadow: inset 0 0 10px 1px #0e2d74;
-
-    &::placeholder {
-      color: #0e2d74;
-      visibility: visible;
-    }
+    box-shadow: inset 0 0 0 2px #a407ff;
+  }
+  small {
+    display: block;
+    background: #a407ff;
+    padding: 2px;
+    margin-top: -8px;
+    margin-bottom: 8px;
   }
 
   display: flex;
@@ -73,12 +75,15 @@ export const ButtonContainer = styled.div`
 
 export const PaymentContainer = styled.div<Props>`
   .input-error {
-    box-shadow: inset 0 0 10px 1px #0e2d74;
+    box-shadow: inset 0 0 0 2px #a407ff;
+  }
 
-    &::placeholder {
-      color: #0e2d74;
-      visibility: visible;
-    }
+  small {
+    display: block;
+    background: #a407ff;
+    padding: 2px;
+    margin-top: -8px;
+    margin-bottom: 8px;
   }
 
   display: ${({ $isVisible }) => ($isVisible ? "none" : "flex")};
